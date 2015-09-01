@@ -25,31 +25,32 @@ function Start-WindowsPermanently {
     Confirm-IsAdmin
     
     $linuxBootManagerGuid = Get-LinuxBootManagerGuid
-    Write-Output bcdedit /set {fwbootmgr} displayorder {bootmgr} $linuxBootManagerGuid
-    Write-Output shutdown /r /t 0
+    bcdedit /set "{fwbootmgr}" displayorder "{bootmgr}" $linuxBootManagerGuid
+
+    shutdown /r /t 0
 }
 
 function Start-WindowsOnce {
     Confirm-IsAdmin
     
-    Write-Output bcdedit /set {fwbootmgr} bootsequence {bootmgr}
-    Write-Output shutdown /r /t 0
+    bcdedit /set "{fwbootmgr}" bootsequence "{bootmgr}"
+    shutdown /r /t 0
 }
 
 function Start-LinuxPermanently {
     Confirm-IsAdmin
     
     $linuxBootManagerGuid = Get-LinuxBootManagerGuid
-    Write-Output bcdedit /set {fwbootmgr} displayorder $linuxBootManagerGuid {bootmgr}
-    Write-Output shutdown /r /t 0
+    bcdedit /set "{fwbootmgr}" displayorder $linuxBootManagerGuid "{bootmgr}"
+    shutdown /r /t 0
 }
 
 function Start-LinuxOnce {
     Confirm-IsAdmin
     
     $linuxBootManagerGuid = Get-LinuxBootManagerGuid
-    Write-Output bcdedit /set {fwbootmgr} bootsequence $linuxBootManagerGuid
-    Write-Output shutdown /r /t 0
+    bcdedit /set "{fwbootmgr}" bootsequence $linuxBootManagerGuid
+    shutdown /r /t 0
 }
 
 Export-ModuleMember -Function Get-LinuxBootManagerGuid
